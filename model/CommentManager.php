@@ -11,7 +11,7 @@ class CommentManager extends Manager
         $comments->execute(array($postId));
 
         return $comments;
-    }    
+    }
     
     public function postComment($postId, $author, $comment)
     {
@@ -22,6 +22,16 @@ class CommentManager extends Manager
         return $affectedLines;
     }
     
+    public function getComment($commentId)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT id, post_id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM alaska_jf_comments WHERE id = ?');
+        $req->execute(array($commentId));
+        $comment = $req->fetch();
+
+        return $comment;
+    }
+    
     public function deleteComment($idComment)
     {
         $db = $this->dbConnect();
@@ -30,6 +40,14 @@ class CommentManager extends Manager
 
         return $delete;
     }
+
+    public function reportCommentIncrement($commentId)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('UPDATE alaska_jf_comments SET report = report + 1 WHERE id=?');
+        $reportComment = $req->execute(array($commentId));
+        return $reportComment;
+    }
     
     public function getReport()
     {
@@ -37,13 +55,5 @@ class CommentManager extends Manager
         $req = $db->query('SELECT id, post_id, author, comment, report FROM alaska_jf_comments ORDER BY report DESC');
         
         return $req;
-    }
-    
-    public function reportCommentIncrement($commentId)
-    {
-        $db = $this->dbConnect();
-        $req = $db->prepare('UPDATE alaska_jf_comments SET report = report + 1 WHERE id=?');
-        $reportComment = $req->execute(array($commentId));
-        return $reportComment;
     }
 }

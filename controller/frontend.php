@@ -63,6 +63,7 @@ function deletePost($postId)
     
     $postDelete = $postManager->deletePost($postId);
     header('Location: index.php');
+    
 }
 
 function deleteComments($idComment, $postId)
@@ -70,6 +71,14 @@ function deleteComments($idComment, $postId)
     $commentManager = new CommentManager();
     
     $comments = $commentManager->deleteComment($idComment);
+    
+}
+
+function deleteComment($idComment, $postId)
+{
+    deleteComments($idComment, $postId);
+    header('Location: index.php?action=post&id=' . $postId);
+    
 }
 
 function deleteCommentReport($idComment, $postId)
@@ -77,6 +86,15 @@ function deleteCommentReport($idComment, $postId)
     deleteComments($idComment, $postId);
     
     profile();
+}
+
+function viewOldPost()
+{ 
+    $getPost = new PostManager();
+    
+    $post = $getPost->getPost($_GET['id']);
+
+    require('view/frontend/updatePostView.php');
 }
 
 function updatePost($postId, $postTitle, $contentPost)
@@ -90,25 +108,6 @@ function updatePost($postId, $postTitle, $contentPost)
     else {
         header('Location: index.php');
     }
-}
-
-function viewOldPost()
-{ 
-    $getPost = new PostManager();
-    
-    $post = $getPost->getPost($_GET['id']);
-
-    require('view/frontend/updatePostView.php');
-}
-
-function profile()
-{   
-    $postManager = new PostManager();
-    $posts = $postManager->getPosts();
-    
-    $commentManager = new CommentManager();   
-    $report = $commentManager->getReport();
-    require('view/frontend/adminView.php');
 }
 
 function connectAccount($passconnect, $pseudoconnect)
@@ -162,18 +161,6 @@ function reportComment($commentId, $idPost)
     $comment = $commentManager->getComment($commentId);
     
     require('view/frontend/validateReportView.php');
-}
-
-function disconnectsAdmin()
-{
-    session_start();
-    $_SESSION = array();
-    session_destroy();
-    
-    setcookie('login', '');
-    setcookie('pass_hache', '');
-    echo "déconnecté";
-    header("Location: index.php");
 }
 
 function showCommentRepport($commentId, $idPost)

@@ -6,31 +6,31 @@ try {
         if ($_GET['action'] == 'listPosts') {
             listPosts();
         }
-    }
-    elseif ($_GET['action'] == 'post') {
-        if (isset($_GET['id']) && $_GET['id'] > 0) {
-            post();
-        }
-        else {
-            throw new Exception('Aucun identifiant de billet envoyé');
-        } 
-    }
-    elseif ($_GET['action'] == 'addComment') {
-        if (isset($_GET['id']) && $_GET['id'] > 0) {
-            if (!empty($_POST['author']) && !empty($_POST['comment'])) {
-            addComment($_GET['id'], $_POST['author'], $_POST['comment']);
+        elseif ($_GET['action'] == 'post') {
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                post();
             }
             else {
-                $erreurComment = "nop";
-                header('Location: index.php?action=post&id=' . $_GET['id']);
-            }  
+                throw new Exception('Aucun identifiant de billet envoyé');
+            } 
         }
-        else {
-            throw new Exception('Aucun identifiant de billet envoyé');
+        
+        elseif ($_GET['action'] == 'addComment') {
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                if (!empty($_POST['author']) && !empty($_POST['comment'])) {
+                    addComment($_GET['id'], $_POST['author'], $_POST['comment']);
+                }
+                else {
+                    $erreurComment = "nop";
+                    header('Location: index.php?action=post&id=' . $_GET['id']);
+                }  
+            }
+            else {
+                throw new Exception('Aucun identifiant de billet envoyé');
             }
         }
-    
-    elseif ($_GET['action'] == 'addPost') {
+        
+        elseif ($_GET['action'] == 'addPost') {
                 if (!empty($_POST['postTitle']) && !empty($_POST['postContent'])) {
                     addPost($_POST['postTitle'], $_POST['postContent']);
                 }
@@ -38,8 +38,8 @@ try {
                     throw new Exception('Ecrivez le nouveau billet !');
                 }  
         }
-    
-    elseif ($_GET['action'] == 'deletePost') {
+        
+        elseif ($_GET['action'] == 'deletePost') {
             if (isset($_GET['id']) && $_GET['id'] > 0) 
             {
                     deletePost($_GET['id']);
@@ -49,8 +49,8 @@ try {
                 throw new Exception('Aucun billet ciblé');
             }
         }
-    
-    elseif ($_GET['action'] == 'deleteComment') {
+        
+        elseif ($_GET['action'] == 'deleteComment') {
             if (isset($_GET['id']) && $_GET['id'] > 0) 
             {
                     deleteComment($_GET['id'], $_GET['id_post']);
@@ -60,8 +60,8 @@ try {
                 throw new Exception('Aucun commentaire ciblé');
             }
         }
-    
-    elseif ($_GET['action'] == 'deleteCommentReport') {
+        
+        elseif ($_GET['action'] == 'deleteCommentReport') {
             if (isset($_GET['id']) && $_GET['id'] > 0) 
             {
                     deleteCommentReport($_GET['id'], $_GET['id_post']);
@@ -71,8 +71,8 @@ try {
                 throw new Exception('Aucun commentaire ciblé');
             }
         }
-    
-    elseif ($_GET['action'] == 'updatePost') {
+        
+        elseif ($_GET['action'] == 'updatePost') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 if (!empty($_POST['postTitle']) && !empty($_POST['postContent'])) {
                     updatePost($_GET['id'], $_POST['postTitle'], $_POST['postContent']);
@@ -85,8 +85,8 @@ try {
                 throw new Exception('Aucun identifiant de billet envoyé');
             }
         }
-    
-    elseif ($_GET['action'] == 'viewOldPost') {
+        
+        elseif ($_GET['action'] == 'viewOldPost') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 viewOldPost();
             }
@@ -94,8 +94,8 @@ try {
                 throw new Exception('Aucun identifiant de billet envoyé');
             }
         }
-    
-    elseif ($_GET['action'] == 'connectAccount') {
+        
+        elseif ($_GET['action'] == 'connectAccount') {
             if (isset($_POST["formconnect"])) {
                 $passconnect = htmlspecialchars($_POST['passconnect']);
                 $pseudoconnect = htmlspecialchars($_POST['pseudoconnect']);
@@ -106,8 +106,8 @@ try {
                 $erreur = "Vous devez remplir le champ";
             }
         }
-    
-    elseif ($_GET['action'] == 'disconnectsAdmin') {
+        
+        elseif ($_GET['action'] == 'disconnectsAdmin') {
             if (isset($_POST["formdisconnects"])) {
                 disconnectsAdmin();
             }
@@ -115,8 +115,8 @@ try {
                 throw new Exception('Erreur de déconnexion');
             }
         }
-    
-    elseif ($_GET['action'] == 'reportComment') {
+        
+        elseif ($_GET['action'] == 'reportComment') {
             if (isset($_GET['id']) && $_GET['id'] > 0) 
             {
                 reportComment($_GET['id'], $_GET['id_post']);
@@ -126,8 +126,8 @@ try {
                 throw new Exception('Aucun commentaire ciblé');
             }
         }
-    
-    elseif ($_GET['action'] == 'showCommentRepport') {
+        
+        elseif ($_GET['action'] == 'showCommentRepport') {
             if (isset($_GET['id']) && $_GET['id'] > 0) 
             {
                     showCommentRepport($_GET['id'], $_GET['post_id']);
@@ -138,19 +138,17 @@ try {
             }
         }
     
-    //Move between the pages
-    elseif ($_GET['action'] == 'connect') {
+        //Move between the pages
+        elseif ($_GET['action'] == 'connect') {
             connect();
         }
-    
-    elseif ($_GET['action'] == 'profileAdmin') {
+        elseif ($_GET['action'] == 'profileAdmin') {
             profile();
         }
-    
-    elseif ($_GET['action'] == 'formAddPost') {
+        elseif ($_GET['action'] == 'formAddPost') {
             formAddPost();
         }
-    
+    }
     else {
         listPosts();
     }

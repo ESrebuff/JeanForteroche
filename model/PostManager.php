@@ -10,7 +10,7 @@ class PostManager extends Manager
 
         return $req;
     }
-    
+
     public function getPost($postId)
     {
         $db = $this->dbConnect();
@@ -21,15 +21,6 @@ class PostManager extends Manager
         return $post;
     }
     
-    public function addPost($title, $content)
-    {
-        $db = $this->dbConnect();
-        $req = $db->prepare('INSERT INTO alaska_jf_posts (title, content, creation_date) VALUES(?, ?, NOW())');
-        $affectedLines = $req->execute(array($title, $content));
-
-        return $affectedLines;
-    }
-    
     public function deletePost($postId)
     {
         $db = $this->dbConnect();
@@ -37,6 +28,15 @@ class PostManager extends Manager
         $delete->execute(array($postId));
 
         return $delete;
+    }
+    
+    public function addPost($title, $content)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('INSERT INTO alaska_jf_posts (title, content, creation_date) VALUES(?, ?, NOW())');
+        $affectedLines = $req->execute(array($title, $content));
+
+        return $affectedLines;
     }
     
     public function idPostAddedPost()
@@ -56,6 +56,5 @@ class PostManager extends Manager
         $updateLines = $comments->execute(array($postTitle, $contentPost, $postId));
 
         return $updateLines;
-    }
-    
+    }   
 }
