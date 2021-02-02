@@ -30,4 +30,12 @@ class CommentManager extends Manager
 
         return $delete;
     }
+    
+    public function getReport()
+    {
+        $db = $this->dbConnect();
+        $req = $db->query('SELECT id, post_id, author, comment, report FROM alaska_jf_comments ORDER BY report DESC');
+        
+        return $req;
+    }
 }

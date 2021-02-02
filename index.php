@@ -61,6 +61,17 @@ try {
             }
         }
     
+    elseif ($_GET['action'] == 'deleteCommentReport') {
+            if (isset($_GET['id']) && $_GET['id'] > 0) 
+            {
+                    deleteCommentReport($_GET['id'], $_GET['id_post']);
+            }
+            else 
+            {
+                throw new Exception('Aucun commentaire ciblé');
+            }
+        }
+    
     
     
     else {

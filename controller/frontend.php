@@ -71,3 +71,20 @@ function deleteComments($idComment, $postId)
     
     $comments = $commentManager->deleteComment($idComment);
 }
+
+function deleteCommentReport($idComment, $postId)
+{
+    deleteComments($idComment, $postId);
+    
+    profile();
+}
+
+function profile()
+{   
+    $postManager = new PostManager();
+    $posts = $postManager->getPosts();
+    
+    $commentManager = new CommentManager();   
+    $report = $commentManager->getReport();
+    require('view/frontend/adminView.php');
+}
