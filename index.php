@@ -107,6 +107,15 @@ try {
             }
         }
     
+    elseif ($_GET['action'] == 'disconnectsAdmin') {
+            if (isset($_POST["formdisconnects"])) {
+                disconnectsAdmin();
+            }
+            else {
+                throw new Exception('Erreur de déconnexion');
+            }
+        }
+    
     
     else {
         listPosts();

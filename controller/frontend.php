@@ -141,3 +141,15 @@ function connectAccount($passconnect, $pseudoconnect)
         }
     }
 }
+
+function disconnectsAdmin()
+{
+    session_start();
+    $_SESSION = array();
+    session_destroy();
+    
+    setcookie('login', '');
+    setcookie('pass_hache', '');
+    echo "déconnecté";
+    header("Location: index.php");
+}
