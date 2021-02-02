@@ -1,0 +1,228 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+}
+
+/* stylelint-disable selector-list-comma-newline-after */
+body {
+    background: url("../images/background_montain.jpg") no-repeat center fixed;
+    -webkit-background-size: cover;
+    /* pour anciens Chrome et Safari */
+    background-size: cover;
+    /* version standardisée */
+}
+
+.container {
+    border-radius: 3px;
+    background-color: white;
+    min-height: 86.6vh;
+}
+
+.jumbotron {
+    background-color: #058fce;
+}
+
+.blog-header {
+    line-height: 1;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.blog-header-logo {
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+    font-size: 2.25rem;
+}
+
+.display-4 {
+    font-size: 2.5rem;
+}
+
+
+.content-article {
+    height: 90px;
+    overflow: hidden;
+}
+
+
+/* Pagination */
+.blog-pagination {
+    margin-bottom: 4rem;
+}
+
+.blog-pagination > .btn {
+    border-radius: 2rem;
+}
+
+/*
+ * Blog posts
+ */
+.section-comment {
+    padding-bottom: 30px;
+}
+
+.blog-post {
+    margin-bottom: 4rem;
+}
+
+.blog-post-title {
+    margin-bottom: .25rem;
+    font-size: 2.5rem;
+}
+
+.blog-post-meta {
+    margin-bottom: 1.25rem;
+    color: #999;
+}
+
+.button-input-centr {
+    text-align: center;
+}
+
+.comments {
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.input-send {
+    margin-bottom: 10px;
+    width: 100px;
+    height: 40px;
+    border-radius: 3px;
+    background: #058fce;
+    color: white;
+    border-style: none;
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+    font-weight: bold;
+}
+
+.input-send:hover {
+    background: #0364a9;
+}
+
+/*
+ * Footer
+ */
+
+/* CONNECT */
+.h1-con {
+    margin-top: 30px;
+}
+
+
+.con-form {
+    padding-top: 10px;
+    background-color: #058fce;
+    border-radius: 1px;
+}
+
+.group-con {
+    margin: 20px;
+}
+
+.input-con {
+    margin: auto;
+    width: 75%;
+    height: 45px;
+    font-weight: bold;
+    
+}
+
+.input-con::placeholder {
+  color: #bebebe;
+}
+
+
+.btn-con {
+    margin-bottom: 30px;
+    background-color: #fff;
+}
+
+/* PROFIL */
+.add-article {
+    color: white;
+    background: #058fce;
+    border-radius: 3px;
+    margin: auto;
+    width: 160px;
+    height: 40px;
+    text-align: center;
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+    font-weight: bold;
+    padding-top: 7px;
+    margin-top: 10px;
+}
+.add-article:hover {
+    background: #0364a9;
+    color: white;
+}
+
+.articles {
+    border-bottom: .05rem solid #e5e5e5;
+    margin-bottom: 20px;
+}
+
+.update-articles-profile {
+    margin: 0px 5px 0px 5px;
+}
+
+.unconnect-button{
+    background: white;
+    color: #6c757d;
+    border: 1px solid #6c757d;
+    border-radius: 3px;
+    height: 30px;
+    font-size: .875rem;
+    line-height: 1.5;
+}
+
+.unconnect-button:hover {
+    background: #6c757d;
+    color: white;
+}
+
+/* REPORT*/
+.btn-report {
+    width: 250px;
+    margin-bottom: 10px;
+}
+
+/* POST*/
+.title-post {
+    margin: 10px;
+    width: 250px;
+}
+
+.btn-create-post {
+    width: 130px;
+    margin-top: 10px;
+}
+
+.blog-footer {
+    padding: 2.5rem 0;
+    color: #999;
+    text-align: center;
+    background-color: #f9f9f9;
+    border-top: .05rem solid #e5e5e5;
+}
+
+.blog-footer p:last-child {
+    margin-bottom: 0;
+}
+
+@media (min-width: 768px) {
+    .container {
+        margin-top: 8px;
+        margin-bottom: 8px;
+    }
+
+    .display-4 {
+        font-size: 3rem;
+    }
+}
+
+}
