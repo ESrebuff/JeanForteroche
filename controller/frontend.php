@@ -56,3 +56,12 @@ function addPost($title, $content)
         header('Location: index.php?action=post&id=' . $idPosttttt);
     }
 }
+
+function deletePost($postId)
+{
+    $postManager = new PostManager();
+    
+    $postDelete = $postManager->deletePost($postId);
+    header('Location: index.php');
+    
+}

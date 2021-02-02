@@ -29,4 +29,13 @@ class PostManager extends Manager
 
         return $affectedLines;
     }
+    
+    public function deletePost($postId)
+    {
+        $db = $this->dbConnect();
+        $delete = $db->prepare('DELETE FROM alaska_jf_posts WHERE id=?');
+        $delete->execute(array($postId));
+
+        return $delete;
+    }
 }
