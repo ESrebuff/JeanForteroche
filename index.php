@@ -95,6 +95,18 @@ try {
             }
         }
     
+    elseif ($_GET['action'] == 'connectAccount') {
+            if (isset($_POST["formconnect"])) {
+                $passconnect = htmlspecialchars($_POST['passconnect']);
+                $pseudoconnect = htmlspecialchars($_POST['pseudoconnect']);
+                connectAccount($passconnect, $pseudoconnect);
+            }
+            else {
+                header('Location: connect.php');
+                $erreur = "Vous devez remplir le champ";
+            }
+        }
+    
     
     else {
         listPosts();

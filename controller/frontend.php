@@ -110,3 +110,34 @@ function profile()
     $report = $commentManager->getReport();
     require('view/frontend/adminView.php');
 }
+
+function connectAccount($passconnect, $pseudoconnect)
+{
+    $accountConnect = new AccountManager();
+    
+    $connecAccount = $accountConnect->getPassAdmin($passconnect, $pseudoconnect);
+
+    
+    $isPasswordCorrect = password_verify($passconnect, $connecAccount['pass']);
+
+    if (!$connecAccount) //Utile pour plus tard
+    {
+        $erreur = 'Mauvais identifiant ou mot de passe !';
+        require('view/frontend/connectView.php');
+    }
+    else
+    {
+        if ($isPasswordCorrect) 
+        {   
+            session_start();
+            $_SESSION['role'] = $connecAccount['role'];
+            $_SESSION['pseudo'] = $pseudoconnect;
+            profile();
+        }
+        else 
+        {
+            $erreur = 'Mauvais identifiant ou mot de passe !';
+            require('view/frontend/connectView.php');
+        }
+    }
+}
