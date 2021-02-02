@@ -86,6 +86,15 @@ try {
             }
         }
     
+    elseif ($_GET['action'] == 'viewOldPost') {
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                viewOldPost();
+            }
+            else {
+                throw new Exception('Aucun identifiant de billet envoyé');
+            }
+        }
+    
     
     else {
         listPosts();

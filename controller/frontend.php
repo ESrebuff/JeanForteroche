@@ -92,6 +92,14 @@ function updatePost($postId, $postTitle, $contentPost)
     }
 }
 
+function viewOldPost()
+{ 
+    $getPost = new PostManager();
+    
+    $post = $getPost->getPost($_GET['id']);
+
+    require('view/frontend/updatePostView.php');
+}
 
 function profile()
 {   
