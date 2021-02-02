@@ -20,4 +20,13 @@ class PostManager extends Manager
 
         return $post;
     }
+    
+    public function addPost($title, $content)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('INSERT INTO alaska_jf_posts (title, content, creation_date) VALUES(?, ?, NOW())');
+        $affectedLines = $req->execute(array($title, $content));
+
+        return $affectedLines;
+    }
 }

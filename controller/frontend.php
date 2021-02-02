@@ -41,3 +41,18 @@ function addComment($postId, $author, $comment)
         header('Location: index.php?action=post&id=' . $postId);
     }
 }
+
+function addPost($title, $content)
+{
+    $postManager = new PostManager();
+    $affectedLines = $postManager->addPost($title, $content);
+    
+    $idPostAdded = $postManager->idPostAddedPost();
+    $idPosttttt = $idPostAdded['id'];
+    if ($affectedLines === false) {
+        throw new Exception('Impossible d\'ajouter le commentaire !');
+    }
+    else {
+        header('Location: index.php?action=post&id=' . $idPosttttt);
+    }
+}

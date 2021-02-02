@@ -30,7 +30,14 @@ try {
             }
         }
     
-    
+    elseif ($_GET['action'] == 'addPost') {
+                if (!empty($_POST['postTitle']) && !empty($_POST['postContent'])) {
+                    addPost($_POST['postTitle'], $_POST['postContent']);
+                }
+                else {
+                    throw new Exception('Ecrivez le nouveau billet !');
+                }  
+        }
     
     
     
