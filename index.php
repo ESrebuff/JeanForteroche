@@ -46,10 +46,20 @@ try {
             }
             else 
             {
-                throw new Exception('Aucun commentaire ciblé');
+                throw new Exception('Aucun billet ciblé');
             }
         }
     
+    elseif ($_GET['action'] == 'deleteComment') {
+            if (isset($_GET['id']) && $_GET['id'] > 0) 
+            {
+                    deleteComment($_GET['id'], $_GET['id_post']);
+            }
+            else 
+            {
+                throw new Exception('Aucun commentaire ciblé');
+            }
+        }
     
     
     

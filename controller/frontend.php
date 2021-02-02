@@ -63,5 +63,11 @@ function deletePost($postId)
     
     $postDelete = $postManager->deletePost($postId);
     header('Location: index.php');
+}
+
+function deleteComments($idComment, $postId)
+{
+    $commentManager = new CommentManager();
     
+    $comments = $commentManager->deleteComment($idComment);
 }
