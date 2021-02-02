@@ -175,3 +175,32 @@ function disconnectsAdmin()
     echo "déconnecté";
     header("Location: index.php");
 }
+
+function showCommentRepport($commentId, $idPost)
+{ 
+    $commentManager = new CommentManager();
+    
+    $comment = $commentManager->getComment($commentId);
+    require('view/frontend/commentRepportView.php');
+}
+
+// Move between the pages
+function connect()
+{
+    require('view/frontend/connectView.php');
+}
+
+function profile()
+{   
+    $postManager = new PostManager();
+    $posts = $postManager->getPosts();
+    
+    $commentManager = new CommentManager();   
+    $report = $commentManager->getReport();
+    require('view/frontend/adminView.php');
+}
+
+function formAddPost()
+{
+    require('view/frontend/addPostView.php');
+}

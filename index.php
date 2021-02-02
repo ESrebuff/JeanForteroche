@@ -127,8 +127,29 @@ try {
             }
         }
     
+    elseif ($_GET['action'] == 'showCommentRepport') {
+            if (isset($_GET['id']) && $_GET['id'] > 0) 
+            {
+                    showCommentRepport($_GET['id'], $_GET['post_id']);
+            }
+            else 
+            {
+                throw new Exception('Aucun commentaire ciblé');
+            }
+        }
     
+    //Move between the pages
+    elseif ($_GET['action'] == 'connect') {
+            connect();
+        }
     
+    elseif ($_GET['action'] == 'profileAdmin') {
+            profile();
+        }
+    
+    elseif ($_GET['action'] == 'formAddPost') {
+            formAddPost();
+        }
     
     else {
         listPosts();
