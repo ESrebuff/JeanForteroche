@@ -11,3 +11,20 @@ function listPosts()
     
     require('view/frontend/listPostsView.php');
 }
+
+function post()
+{ 
+    $postManager = new PostManager();
+    $commentManager = new CommentManager();
+
+    
+    $post = $postManager->getPost($_GET['id']);
+    $comments = $commentManager->getComments($_GET['id']);
+
+    if($post){
+    require('view/frontend/postView.php');   
+    }
+    else{
+    throw new Exception('Ce billet n\'existe pas !');
+    }
+}
