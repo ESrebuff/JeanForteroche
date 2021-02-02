@@ -79,6 +79,20 @@ function deleteCommentReport($idComment, $postId)
     profile();
 }
 
+function updatePost($postId, $postTitle, $contentPost)
+{
+    $postManager = new PostManager();
+    $updateLines = $postManager->idPostAdded($postId, $postTitle, $contentPost);
+
+    if ($updateLines === false) {
+        throw new Exception('Impossible d\'ajouter le billet !');
+    }
+    else {
+        header('Location: index.php');
+    }
+}
+
+
 function profile()
 {   
     $postManager = new PostManager();

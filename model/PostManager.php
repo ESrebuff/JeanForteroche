@@ -38,4 +38,24 @@ class PostManager extends Manager
 
         return $delete;
     }
+    
+    public function idPostAddedPost()
+    {
+        $db = $this->dbConnect();
+        $req = $db->query('SELECT id FROM alaska_jf_posts ORDER BY id DESC ');
+        $idPostAdded = $req->fetch();
+        return $idPostAdded;
+    }
+    
+    public function idPostAdded($postId, $postTitle, $contentPost)
+    {
+        $db = $this->dbConnect();
+        $comments = $db->prepare('UPDATE alaska_jf_posts SET title=?, content=? WHERE id=?');
+        
+        
+        $updateLines = $comments->execute(array($postTitle, $contentPost, $postId));
+
+        return $updateLines;
+    }
+    
 }

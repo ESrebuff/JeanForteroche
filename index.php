@@ -72,6 +72,19 @@ try {
             }
         }
     
+    elseif ($_GET['action'] == 'updatePost') {
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                if (!empty($_POST['postTitle']) && !empty($_POST['postContent'])) {
+                    updatePost($_GET['id'], $_POST['postTitle'], $_POST['postContent']);
+                }
+                else {
+                    throw new Exception('Ecrivez le nouveau billet !');
+                }  
+            }
+            else {
+                throw new Exception('Aucun identifiant de billet envoyé');
+            }
+        }
     
     
     else {
