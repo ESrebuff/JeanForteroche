@@ -38,4 +38,12 @@ class CommentManager extends Manager
         
         return $req;
     }
+    
+    public function reportCommentIncrement($commentId)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('UPDATE alaska_jf_comments SET report = report + 1 WHERE id=?');
+        $reportComment = $req->execute(array($commentId));
+        return $reportComment;
+    }
 }

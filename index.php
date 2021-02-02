@@ -116,6 +116,19 @@ try {
             }
         }
     
+    elseif ($_GET['action'] == 'reportComment') {
+            if (isset($_GET['id']) && $_GET['id'] > 0) 
+            {
+                reportComment($_GET['id'], $_GET['id_post']);
+            }
+            else 
+            {
+                throw new Exception('Aucun commentaire ciblé');
+            }
+        }
+    
+    
+    
     
     else {
         listPosts();

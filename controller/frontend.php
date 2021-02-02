@@ -153,3 +153,25 @@ function disconnectsAdmin()
     echo "déconnecté";
     header("Location: index.php");
 }
+
+function reportComment($commentId, $idPost)
+{
+    $commentManager = new CommentManager();
+    $repportComment = $commentManager->reportCommentIncrement($commentId);
+    
+    $comment = $commentManager->getComment($commentId);
+    
+    require('view/frontend/validateReportView.php');
+}
+
+function disconnectsAdmin()
+{
+    session_start();
+    $_SESSION = array();
+    session_destroy();
+    
+    setcookie('login', '');
+    setcookie('pass_hache', '');
+    echo "déconnecté";
+    header("Location: index.php");
+}
