@@ -8,13 +8,33 @@ try {
         }
     }
     elseif ($_GET['action'] == 'post') {
-            if (isset($_GET['id']) && $_GET['id'] > 0) {
-                post();
+        if (isset($_GET['id']) && $_GET['id'] > 0) {
+            post();
+        }
+        else {
+            throw new Exception('Aucun identifiant de billet envoyé');
+        } 
+    }
+    elseif ($_GET['action'] == 'addComment') {
+        if (isset($_GET['id']) && $_GET['id'] > 0) {
+            if (!empty($_POST['author']) && !empty($_POST['comment'])) {
+            addComment($_GET['id'], $_POST['author'], $_POST['comment']);
             }
             else {
-                throw new Exception('Aucun identifiant de billet envoyé');
-            } 
+                $erreurComment = "nop";
+                header('Location: index.php?action=post&id=' . $_GET['id']);
+            }  
         }
+        else {
+            throw new Exception('Aucun identifiant de billet envoyé');
+            }
+        }
+    
+    
+    
+    
+    
+    
     
     else {
         listPosts();

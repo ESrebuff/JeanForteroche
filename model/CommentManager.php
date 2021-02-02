@@ -12,4 +12,13 @@ class CommentManager extends Manager
 
         return $comments;
     }    
+    
+    public function postComment($postId, $author, $comment)
+    {
+        $db = $this->dbConnect();
+        $comments = $db->prepare('INSERT INTO alaska_jf_comments (post_id, author, comment, comment_date, report) VALUES(?, ?, ?, NOW(), ?)');
+        $affectedLines = $comments->execute(array($postId, $author, $comment, 0));
+
+        return $affectedLines;
+    }
 }
