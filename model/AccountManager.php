@@ -1,4 +1,4 @@
 <?php
-require_once("model/Manager.php"); // Vous n'alliez pas oublier cette ligne ? ;o)
+require_once("model/Manager.php");
 class AccountManager extends Manager
 {}
