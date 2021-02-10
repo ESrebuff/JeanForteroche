@@ -1,15 +1,8 @@
 <?php 
-    session_start();
     $title = 'Mon blog';
     $tiny = "https://cdn.tiny.cloud/1/r5mrv1noxmieyps0077inllwqbdi2iwzmlsn9kb97vjebkax/tinymce/5/tinymce.min.js";
-
     ob_start();
 ?>
-<?php 
-if(isset($_SESSION['role']) && $_SESSION['role'] == 3)
-{
-?>
-
 <div class="container">
     <header class="blog-header py-3">
         <h1 class="blog-post-title text-center">Ajout d'un billet</h1>
@@ -36,11 +29,6 @@ if(isset($_SESSION['role']) && $_SESSION['role'] == 3)
 </footer>
 
 <?php  
-}
-else
-{
-    header("Location: index.php");
-} 
     $content = ob_get_clean();
     require('template.php'); 
 ?>

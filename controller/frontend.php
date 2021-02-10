@@ -8,7 +8,7 @@ function listPosts()
 {
     $postManager = new PostManager();
     $posts = $postManager->getPosts();
-    
+    session_start();
     require('view/frontend/listPostsView.php');
 }
 
@@ -22,6 +22,7 @@ function post()
     $comments = $commentManager->getComments($_GET['id']);
 
     if($post){
+    session_start();
     require('view/frontend/postView.php');   
     }
     else{
@@ -48,12 +49,12 @@ function addPost($title, $content)
     $affectedLines = $postManager->addPost($title, $content);
     
     $idPostAdded = $postManager->idPostAddedPost();
-    $idPosttttt = $idPostAdded['id'];
+    $idPost = $idPostAdded['id'];
     if ($affectedLines === false) {
         throw new Exception('Impossible d\'ajouter le commentaire !');
     }
     else {
-        header('Location: index.php?action=post&id=' . $idPosttttt);
+        header('Location: index.php?action=post&id=' . $idPost);
     }
 }
 
@@ -93,8 +94,12 @@ function viewOldPost()
     $getPost = new PostManager();
     
     $post = $getPost->getPost($_GET['id']);
-
-    require('view/frontend/updatePostView.php');
+    session_start();
+    if(isset($_SESSION['role']) && $_SESSION['role'] == "admin"){
+        require('view/frontend/updatePostView.php');
+    } else {
+        header("Location: index.php");
+    }
 }
 
 function updatePost($postId, $postTitle, $contentPost)
@@ -119,14 +124,14 @@ function connectAccount($passconnect, $pseudoconnect)
     
     $isPasswordCorrect = password_verify($passconnect, $connecAccount['pass']);
 
-    if (!$connecAccount) //Utile pour plus tard
+    if(!$connecAccount)
     {
         $erreur = 'Mauvais identifiant ou mot de passe !';
         require('view/frontend/connectView.php');
     }
     else
     {
-        if ($isPasswordCorrect) 
+        if($isPasswordCorrect)
         {   
             session_start();
             $_SESSION['role'] = $connecAccount['role'];
@@ -159,7 +164,7 @@ function reportComment($commentId, $idPost)
     $repportComment = $commentManager->reportCommentIncrement($commentId);
     
     $comment = $commentManager->getComment($commentId);
-    
+    session_start();
     require('view/frontend/validateReportView.php');
 }
 
@@ -168,13 +173,23 @@ function showCommentRepport($commentId, $idPost)
     $commentManager = new CommentManager();
     
     $comment = $commentManager->getComment($commentId);
-    require('view/frontend/commentRepportView.php');
+    session_start();
+    if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin'){
+        require('view/frontend/commentRepportView.php');
+    } else {
+        header("Location: index.php");
+    }
 }
 
 // Move between the pages
 function connect()
 {
-    require('view/frontend/connectView.php');
+    session_start();
+    if(!isset($_SESSION['role'])){
+        require('view/frontend/connectView.php');
+    } else {
+        profile();
+    }
 }
 
 function profile()
@@ -184,10 +199,21 @@ function profile()
     
     $commentManager = new CommentManager();   
     $report = $commentManager->getReport();
-    require('view/frontend/adminView.php');
+    session_start();
+    if(isset($_SESSION['role']) && $_SESSION['role'] == "admin"){
+       require('view/frontend/adminView.php'); 
+    } else {
+        header("Location: index.php");
+    }
+    
 }
 
 function formAddPost()
 {
-    require('view/frontend/addPostView.php');
+    session_start();
+    if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin'){
+        require('view/frontend/addPostView.php');
+    } else {
+        header("Location: index.php");
+    }
 }

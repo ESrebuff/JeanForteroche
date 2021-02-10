@@ -1,6 +1,5 @@
 <?php 
-    session_start();
-    $title = 'Mon blog';
+    $title = 'Les récits de Jean Forteroche';
     ob_start(); 
 ?>
 <div class="container">
@@ -64,7 +63,7 @@
 </div>
 <footer class="blog-footer">
     <?php    
-if(isset($_SESSION['role']) && $_SESSION['role'] == 3)
+if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin')
 {
 ?>
     <a class="btn btn-sm btn-outline-secondary" href="index.php?action=profileAdmin">Profil administrateur</a>

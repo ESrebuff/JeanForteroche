@@ -1,12 +1,7 @@
 <?php
-if(!isset($_SESSION['role'])){
-session_start();
-}
 $title = 'Mon blog';
 ob_start(); 
-if(isset($_SESSION['role']))
-{
-    ?>
+?>
 <div class="container">
     <header class="blog-header py-3">
         <h1 class="blog-header-logo text-center">Connecté</h1>
@@ -68,16 +63,7 @@ if(isset($_SESSION['role']))
             </div>
         </div>
     </div>
-
-    <?php    
-}
-else 
-{
-    header("Location: index.php");
-}
-?>
 </div>
-
 
 <footer class="page-footer blog-footer">
     <form action="index.php?action=disconnectsAdmin" method="POST">

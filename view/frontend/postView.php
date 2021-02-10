@@ -1,7 +1,6 @@
 <?php 
-    session_start();
-    $title = 'Mon blog';
-    ob_start(); 
+    $title = htmlspecialchars($post['title']) . " Billet simple pour l'Alaska";
+    ob_start();
 ?>
 <div class="container">
     <header class="blog-header py-3">
@@ -28,28 +27,22 @@
     {
     ?>
     <div class="comments">
-    <p>
-        <strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?>
-    </p>
-    
-    <p>
-        <?= nl2br(htmlspecialchars($comment['comment'])) ?>
-    </p>
+        <p>
+            <strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?>
+        </p>
 
-    <a class="col-md-6 link-comment" href="index.php?action=reportComment&amp;id=<?= $comment['id'] ?>&amp;id_post=<?= $post['id'] ?> ">Signalez le commentaire</a>
+        <p>
+            <?= nl2br(htmlspecialchars($comment['comment'])) ?>
+        </p>
 
-    <?php
-    if(isset($_SESSION['role']) && $_SESSION['role'] == 3 )
-    {
-       ?>
-    <a class="col-md-6 link-comment" href="index.php?action=deleteComment&amp;id=<?= $comment['id'] ?>&amp;id_post=<?= $post['id'] ?> ">Supprimer le commentaire</a>
-    <?php
-    }
-    ?>
+<?php if(isset($_SESSION['role']) && $_SESSION['role'] == "admin" ) { ?>
+        <a class="col-md-6 link-comment" href="index.php?action=deleteComment&amp;id=<?= $comment['id'] ?>&amp;id_post=<?= $post['id'] ?> ">Supprimer le commentaire</a>
+        
+<?php } else { ?>
+        <a class="col-md-6 link-comment" href="index.php?action=reportComment&amp;id=<?= $comment['id'] ?>&amp;id_post=<?= $post['id'] ?> ">Signalez le commentaire</a>
+        <?php } ?>
     </div>
-    <?php
-    }
-    ?>
+<?php } ?>
     <form action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" method="post">
         <div class="form-group">
             <label for="author">Pseudo :</label><br />
@@ -67,7 +60,7 @@
 
 <footer class="page-footer blog-footer">
     <?php    
-    if(isset($_SESSION['role']) && $_SESSION['role'] == 3) {
+    if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin') {
 ?>
     <a class="btn btn-sm btn-outline-secondary" href="index.php?action=profileAdmin">Profil administrateur</a>
     <?php  

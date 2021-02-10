@@ -1,11 +1,6 @@
 <?php
-if(!isset($_SESSION['role'])){
-session_start();
-}
 $title = 'Mon blog';
 ob_start(); 
-if(isset($_SESSION['role']) && $_SESSION['role'] == 3)
-{
 ?>
 <div class="container">
     <header class="blog-header py-3">
@@ -34,15 +29,6 @@ if(isset($_SESSION['role']) && $_SESSION['role'] == 3)
 <footer class="blog-footer">
     <a class="btn btn-sm btn-outline-secondary" href="index.php?action=profileAdmin">Profil administrateur</a>
 </footer>
-
-<?php  
-}
-else 
-{
-    header("Location: index.php");
-}
-?>
-
 <?php
     $content = ob_get_clean();
     require('template.php'); 
