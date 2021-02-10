@@ -1,10 +1,10 @@
 <?php
-$title = 'Mon blog';
+$title = 'Administrateur commentaire';
 ob_start(); 
 ?>
 <div class="container">
     <header class="blog-header py-3">
-        <h1 class="blog-header-logo text-center">Traitement de commentaire signalez</h1>
+        <h1 class="blog-header-logo text-center">Traitement du commentaire signalé</h1>
     </header>
     <div class="nav-scroller py-1 mb-2">
         <nav class="nav d-flex justify-content-between">
@@ -22,7 +22,7 @@ ob_start();
             <?= nl2br(htmlspecialchars($comment['comment'])) ?>
         </p>
             <a class="btn btn-report btn-sm btn-outline-secondary" href="index.php?action=deleteCommentReport&amp;id=<?= $comment['id'] ?>&amp;id_post=<?= $idPost ?> ">Supprimer le commentaire</a>
-            <a class="btn btn-report btn-sm btn-outline-secondary" href="index.php?action=post&amp;id=<?= $idPost ?>">Voir le post liée au commentaire</a>
+            <a class="btn btn-report btn-sm btn-outline-secondary" href="index.php?action=post&amp;id=<?= $idPost ?>">Voir le post lié au commentaire</a>
     </div>
 </div>
 

@@ -1,5 +1,5 @@
 <?php 
-    $title = 'Mon blog';
+    $title = 'Modifier un billet';
     $tiny = "https://cdn.tiny.cloud/1/r5mrv1noxmieyps0077inllwqbdi2iwzmlsn9kb97vjebkax/tinymce/5/tinymce.min.js";
     ob_start(); 
 ?>

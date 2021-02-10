@@ -1,10 +1,10 @@
 <?php
-    $title = 'Mon blog';
+    $title = 'Commentaire signalé';
     ob_start(); 
     ?>
 <div class="container">
     <header class="blog-header py-3">
-        <h1 class="blog-post-title text-center">Le commentaire à bien été signalez</h1>
+        <h1 class="blog-post-title text-center">Le commentaire à bien été signalé</h1>
     </header>
     <div class="nav-scroller py-1 mb-2">
         <nav class="nav d-flex justify-content-between">

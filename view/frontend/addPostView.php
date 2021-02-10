@@ -1,11 +1,11 @@
 <?php 
-    $title = 'Mon blog';
+    $title = "Ajouter d'un billet";
     $tiny = "https://cdn.tiny.cloud/1/r5mrv1noxmieyps0077inllwqbdi2iwzmlsn9kb97vjebkax/tinymce/5/tinymce.min.js";
     ob_start();
 ?>
 <div class="container">
     <header class="blog-header py-3">
-        <h1 class="blog-post-title text-center">Ajout d'un billet</h1>
+        <h1 class="blog-post-title text-center">Ajouter un billet</h1>
     </header>
     <div class="nav-scroller py-1 mb-2">
         <nav class="nav d-flex justify-content-between">

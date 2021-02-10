@@ -19,12 +19,9 @@
         </div>
     </div>
 
-    <p>Derniers articles du blog :</p>
+    <p>Derniers billets du blog :</p>
     <div class="row mb-2">
-        <?php
-    while ($data = $posts->fetch())
-    {
-?>
+<?php while ($data = $posts->fetch()) { ?>
         <div class="col-md-6">
             <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                 <div class="col p-4 d-flex flex-column position-static">
@@ -42,40 +39,25 @@
                         <a class="col-md-4" href="index.php?action=post&amp;id=<?= $data['id'] ?>">
                             Lire plus
                         </a>
-                        <?php 
-                    if(isset($_SESSION['role']))
-                        {
-                    ?>
+            <?php if(isset($_SESSION['role'])) { ?>
                         <a class="col-md-4" href="index.php?action=viewOldPost&amp;id=<?= $data['id'] ?>">modifier</a>
                         <a class="col-md-4" href="index.php?action=deletePost&amp;id=<?= $data['id'] ?>">supprimer</a>
-                        <?php
-                        }      
-                    ?>
+                        <?php } ?>
                     </em>
 
                 </div>
             </div>
         </div>
-        <?php  
-}
-?>
+<?php  } ?>
     </div>
 </div>
 <footer class="blog-footer">
-    <?php    
-if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin')
-{
-?>
+<?php if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin') { ?>
     <a class="btn btn-sm btn-outline-secondary" href="index.php?action=profileAdmin">Profil administrateur</a>
-    <?php  
-}
-else
-{
-?>
+<?php } else { ?>
     <a class="btn btn-sm btn-outline-secondary" href="index.php?action=connect">Administration Connexion</a>
 </footer>
-<?php
-} 
+<?php } 
     $posts->closeCursor();
     $content = ob_get_clean();
     require('template.php'); 

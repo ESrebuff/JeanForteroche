@@ -1,5 +1,5 @@
 <?php
-$title = 'Mon blog';
+$title = 'Profil administrateur';
 ob_start(); 
 ?>
 <div class="container">
@@ -41,7 +41,7 @@ ob_start();
         <div class="col-md-6">
             <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                 <div class="col p-4 d-flex flex-column position-static">
-                    <h3>Commentaires signalez</h3>
+                    <h3>Commentaires signalés</h3>
                     <?php  
                 while ($reportComment = $report->fetch())
                 {
@@ -49,7 +49,7 @@ ob_start();
                     {
             
                 ?>
-                    <p>Nombre de signalement <?= htmlspecialchars($reportComment['report']) ?>
+                    <p>Nombre de signalements <?= htmlspecialchars($reportComment['report']) ?>
                         <a href="index.php?action=showCommentRepport&amp;id=<?= $reportComment['id'] ?> &amp;post_id=<?= $reportComment['post_id'] ?>"><em> Voir le commentaire</em>
                         </a>
                     </p>

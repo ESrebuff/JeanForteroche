@@ -35,7 +35,7 @@ try {
                     addPost($_POST['postTitle'], $_POST['postContent']);
                 }
                 else {
-                    throw new Exception('Ecrivez le nouveau billet !');
+                    throw new Exception('Écrivez le nouveau billet !');
                 }  
         }
         
@@ -78,7 +78,7 @@ try {
                     updatePost($_GET['id'], $_POST['postTitle'], $_POST['postContent']);
                 }
                 else {
-                    throw new Exception('Ecrivez le nouveau billet !');
+                    throw new Exception('Écrivez le nouveau billet !');
                 }  
             }
             else {
@@ -154,5 +154,7 @@ try {
     }
 }
 catch(Exception $e) {
-    echo 'Erreur : ' . $e->getMessage();
+    $message = $e->getMessage();
+        require('view/frontend/errorView.php');
+    
 }

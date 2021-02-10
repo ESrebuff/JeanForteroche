@@ -39,7 +39,7 @@
         <a class="col-md-6 link-comment" href="index.php?action=deleteComment&amp;id=<?= $comment['id'] ?>&amp;id_post=<?= $post['id'] ?> ">Supprimer le commentaire</a>
         
 <?php } else { ?>
-        <a class="col-md-6 link-comment" href="index.php?action=reportComment&amp;id=<?= $comment['id'] ?>&amp;id_post=<?= $post['id'] ?> ">Signalez le commentaire</a>
+        <a class="col-md-6 link-comment" href="index.php?action=reportComment&amp;id=<?= $comment['id'] ?>&amp;id_post=<?= $post['id'] ?> ">Signaler le commentaire</a>
         <?php } ?>
     </div>
 <?php } ?>
@@ -50,7 +50,7 @@
         </div>
         <div class="form-group">
             <label for="comment">Commentaire</label><br />
-            <textarea class="form-control" id="comment" name="comment" value="Entrez un pseudo" rows="5"></textarea>
+            <textarea class="form-control" id="comment" name="comment" rows="5"></textarea>
         </div>
         <div class="form-group button-input-centr">
             <input class="input-send" value="Envoyer" type="submit" />

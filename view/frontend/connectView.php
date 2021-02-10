@@ -1,5 +1,5 @@
 <?php 
-    $title = 'Mon blog';
+    $title = 'Connexion administration';
     ob_start();  
 ?>
 <div class="modal-dialog text-center modal-con">
