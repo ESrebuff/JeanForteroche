@@ -51,7 +51,7 @@ function addPost($title, $content)
     $idPostAdded = $postManager->idPostAddedPost();
     $idPost = $idPostAdded['id'];
     if ($affectedLines === false) {
-        throw new Exception('Impossible d\'ajouter le commentaire !');
+        throw new Exception('Impossible d\'ajouter le billet !');
     }
     else {
         header('Location: index.php?action=post&id=' . $idPost);
@@ -85,7 +85,9 @@ function deleteComment($idComment, $postId)
 function deleteCommentReport($idComment, $postId)
 {
     deleteComments($idComment, $postId);
-    
+    if(session_status() == PHP_SESSION_NONE){
+        session_start();
+    }
     profile();
 }
 
@@ -133,7 +135,9 @@ function connectAccount($passconnect, $pseudoconnect)
     {
         if($isPasswordCorrect)
         {   
-            session_start();
+            if(session_status() == PHP_SESSION_NONE){
+                session_start();
+            }
             $_SESSION['role'] = $connecAccount['role'];
             $_SESSION['pseudo'] = $pseudoconnect;
             profile();
@@ -184,7 +188,9 @@ function showCommentRepport($commentId, $idPost)
 // Move between the pages
 function connect()
 {
-    session_start();
+    if(session_status() == PHP_SESSION_NONE){
+       session_start();
+    }
     if(!isset($_SESSION['role'])){
         require('view/frontend/connectView.php');
     } else {
@@ -199,7 +205,9 @@ function profile()
     
     $commentManager = new CommentManager();   
     $report = $commentManager->getReport();
-    session_start();
+    if(session_status() == PHP_SESSION_NONE){
+       session_start();
+    }
     if(isset($_SESSION['role']) && $_SESSION['role'] == "admin"){
        require('view/frontend/adminView.php'); 
     } else {
