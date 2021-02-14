@@ -191,10 +191,10 @@ function connect()
     if(session_status() == PHP_SESSION_NONE){
        session_start();
     }
-    if(!isset($_SESSION['role'])){
-        require('view/frontend/connectView.php');
-    } else {
+    if(isset($_SESSION['role']) && $_SESSION['role'] == "admin"){
         profile();
+    } else {
+        require('view/frontend/connectView.php');
     }
 }
 

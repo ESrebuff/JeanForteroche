@@ -102,7 +102,7 @@ try {
                 connectAccount($passconnect, $pseudoconnect);
             }
             else {
-                header('Location: connect.php');
+                header('Location: index.php?action=connect');
                 $erreur = "Vous devez remplir le champ";
             }
         }
