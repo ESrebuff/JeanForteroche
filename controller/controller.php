@@ -67,6 +67,7 @@ function deletePost($postId)
     
 }
 
+// init a delete comment
 function deleteComments($idComment, $postId)
 {
     $commentManager = new CommentManager();
@@ -75,12 +76,14 @@ function deleteComments($idComment, $postId)
     
 }
 
+// call the delete comment then move to the post
 function deleteComment($idComment, $postId)
 {
     deleteComments($idComment, $postId);
     header('Location: index.php?action=post&id=' . $postId);
 }
 
+// call the delete comment then move to the profile
 function deleteCommentReport($idComment, $postId)
 {
     deleteComments($idComment, $postId);
@@ -90,6 +93,7 @@ function deleteCommentReport($idComment, $postId)
     profile();
 }
 
+// Get a post then move to the view for update the post
 function viewOldPost()
 { 
     $getPost = new PostManager();
@@ -103,13 +107,14 @@ function viewOldPost()
     }
 }
 
+
 function updatePost($postId, $postTitle, $contentPost)
 {
     $postManager = new PostManager();
     $updateLines = $postManager->idPostAdded($postId, $postTitle, $contentPost);
 
     if ($updateLines === false) {
-        throw new Exception('Impossible d\'ajouter le billet !');
+        throw new Exception('Impossible de modifier le billet !');
     }
     else {
         header('Location: index.php');

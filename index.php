@@ -21,7 +21,6 @@ try {
                     addComment($_GET['id'], $_POST['author'], $_POST['comment']);
                 }
                 else {
-                    $erreurComment = "nop";
                     header('Location: index.php?action=post&id=' . $_GET['id']);
                 }  
             }
@@ -156,5 +155,4 @@ try {
 catch(Exception $e) {
     $message = $e->getMessage();
         require('view/errorView.php');
-    
 }
