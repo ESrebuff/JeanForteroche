@@ -9,7 +9,7 @@ function listPosts()
     $postManager = new PostManager();
     $posts = $postManager->getPosts();
     session_start();
-    require('view/frontend/listPostsView.php');
+    require('view/listPostsView.php');
 }
 
 function post()
@@ -23,7 +23,7 @@ function post()
 
     if($post){
     session_start();
-    require('view/frontend/postView.php');   
+    require('view/postView.php');   
     }
     else{
     throw new Exception('Ce billet n\'existe pas !');
@@ -79,7 +79,6 @@ function deleteComment($idComment, $postId)
 {
     deleteComments($idComment, $postId);
     header('Location: index.php?action=post&id=' . $postId);
-    
 }
 
 function deleteCommentReport($idComment, $postId)
@@ -98,7 +97,7 @@ function viewOldPost()
     $post = $getPost->getPost($_GET['id']);
     session_start();
     if(isset($_SESSION['role']) && $_SESSION['role'] == "admin"){
-        require('view/frontend/updatePostView.php');
+        require('view/updatePostView.php');
     } else {
         header("Location: index.php");
     }
@@ -129,7 +128,7 @@ function connectAccount($passconnect, $pseudoconnect)
     if(!$connecAccount)
     {
         $erreur = 'Mauvais identifiant ou mot de passe !';
-        require('view/frontend/connectView.php');
+        require('view/connectView.php');
     }
     else
     {
@@ -145,7 +144,7 @@ function connectAccount($passconnect, $pseudoconnect)
         else 
         {
             $erreur = 'Mauvais identifiant ou mot de passe !';
-            require('view/frontend/connectView.php');
+            require('view/connectView.php');
         }
     }
 }
@@ -169,7 +168,7 @@ function reportComment($commentId, $idPost)
     
     $comment = $commentManager->getComment($commentId);
     session_start();
-    require('view/frontend/validateReportView.php');
+    require('view/validateReportView.php');
 }
 
 function showCommentRepport($commentId, $idPost)
@@ -179,7 +178,7 @@ function showCommentRepport($commentId, $idPost)
     $comment = $commentManager->getComment($commentId);
     session_start();
     if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin'){
-        require('view/frontend/commentRepportView.php');
+        require('view/commentRepportView.php');
     } else {
         header("Location: index.php");
     }
@@ -194,7 +193,7 @@ function connect()
     if(isset($_SESSION['role']) && $_SESSION['role'] == "admin"){
         profile();
     } else {
-        require('view/frontend/connectView.php');
+        require('view/connectView.php');
     }
 }
 
@@ -209,7 +208,7 @@ function profile()
        session_start();
     }
     if(isset($_SESSION['role']) && $_SESSION['role'] == "admin"){
-       require('view/frontend/adminView.php'); 
+       require('view/adminView.php'); 
     } else {
         header("Location: index.php");
     }
@@ -220,7 +219,7 @@ function formAddPost()
 {
     session_start();
     if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin'){
-        require('view/frontend/addPostView.php');
+        require('view/addPostView.php');
     } else {
         header("Location: index.php");
     }

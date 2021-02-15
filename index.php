@@ -1,5 +1,5 @@
 <?php
-require('controller/frontend.php');
+require('controller/controller.php');
 
 try {
     if (isset($_GET['action'])) {
@@ -155,6 +155,6 @@ try {
 }
 catch(Exception $e) {
     $message = $e->getMessage();
-        require('view/frontend/errorView.php');
+        require('view/errorView.php');
     
 }
